@@ -1,15 +1,20 @@
-const body = document.getElementById("main")
+let mountains = [
+    { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
+    { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
+    { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
+    { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
+    { name: "Monte Amiata", height: 1738, place: "Siena" }
+];
+
 const table = document.createElement("table")
-
-body.innerHTML = "Hello World!"
-
+const body =  document.getElementById("body")
 function generateTableHead(table, data) {
     let thead = table.createTHead();
     table.className = "table"
     table.className += " table-striped"
     thead.className = "thead-dark"
     let row = thead.insertRow();
-    for (let key in data) {
+    for (let key of data) {
     let th = document.createElement("th");
     let text = document.createTextNode(key);
     th.appendChild(text);
@@ -18,12 +23,12 @@ function generateTableHead(table, data) {
 }
 
 function generateTable(table, data) {
-    let tHeadData = Object.keys(data.Countries[0]);
+    let tHeadData = Object.keys(data[0]);
     generateTableHead(table,tHeadData);
     let tbody = document.createElement("tbody");
     tbody.className = "table-dark"
     table.appendChild(tbody)
-    for (let element of data.Countries) {
+    for (let element of data) {
     let row = tbody.insertRow();
         for (key in element) {
             let cell = row.insertCell();
@@ -32,18 +37,5 @@ function generateTable(table, data) {
         }
     }
 }
-
-fetch("https://api.covid19api.com/summary")
-    .then((resp) => resp.json())
-    .then(data => {
-        generateTable(table, data);
-
-        console.log((Object(data.Countries[1])))
-    })
-    .catch(err => console.log(err))
-
-
-
+generateTable(table, mountains);
 body.appendChild(table)
-
-console.log("node server is not running")
