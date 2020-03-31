@@ -28,13 +28,58 @@ function createList(data,ul){
         ul.appendChild(li)
     }
 }
-function alertBox(data){
-    let countryObj = []
-    countryObj.push({"Country":data.Country})
-    countryObj.push({"Total Deaths":data.TotalDeaths})
-    countryObj.push({"Total Comfirmed":data.TotalConfirmed})
-    countryObj.push({"Total Recovered":data.TotalRecovered})
+function createButton(clsName,btntype,btnid,btnparrent,slug){
+    const button = document.createElement("button")
+    //button.className = "close"
+    button.className = clsName
+    button.type = btntype
+    button.id = btnid
+    button.innerHTML = btnid
+    button.addEventListener("click",(e) => {
+        e.preventDefault()
+        let country = slug
+        let status = btnid
+        let url = "https://api.covid19api.com/dayone/country/" + country + "/status/" + status
+        console.log(url)
+        getval(url).then(values => {renderChart(values,"canvas2")})
+    })
+    btnparrent.appendChild(button)
+}
 
+function createCanvas(id,canParent,slug){
+    const candiv = document.createElement("div")
+    candiv.style.width = "100%"
+    const canvas = document.createElement("canvas")
+    canvas.id = id
+    canvas.addEventListener("DOMNodeInserted",(e) => {
+        e.preventDefault()
+        console.log("working")
+        let country = slug
+        let status = "confirmed"
+        let url = "https://api.covid19api.com/dayone/country/" + country + "/status/" + status
+        console.log(url)
+        getval(url).then(values => {renderChart(values,"canvas2")})
+    })
+    candiv.appendChild(canvas)
+    canParent.appendChild(candiv)
+}
+
+function btnWrapper(wrapParrent,slug){
+    const wrapdiv = document.createElement("div")
+    wrapdiv.className = "d-flex text-white justify-content-center"
+    createButton("btn btn-dark","button","confirmed",wrapdiv,slug)
+    createButton("btn btn-dark","button","deaths",wrapdiv,slug)
+    createButton("btn btn-dark","button","recovered",wrapdiv,slug)
+    wrapParrent.appendChild(wrapdiv)
+}
+
+function alertBox(data){
+    let countryObj = [{"Country":data.Country},
+                      {"Total Deaths":data.TotalDeaths},
+                      {"Total Comfirmed":data.TotalConfirmed},
+                      {"Total Recovered":data.TotalRecovered}]
+
+    let slug = data.Slug
 
     const div = document.getElementById("alertBox")
 
@@ -42,23 +87,50 @@ function alertBox(data){
     div2.className = "alert alert-warning alert-dismissible fade show"
     div2.setAttribute("role","alert")
 
+
+    //close button
     const button = document.createElement("button")
     button.className = "close"
     button.setAttribute("data-dismiss","alert")
     button.setAttribute("aria-label","Close")
-    
     const dataspan = document.createElement("span")
     dataspan.setAttribute("aria-hidden","true")
     dataspan.innerHTML = "X"
-
     button.appendChild(dataspan)
 
+    //card for canvas and data:totals
+    const div3 = document.createElement("div")
+    div3.className = "card-deck"
+
+
+    //card for canvas and buttons
+    const div4 = document.createElement("div")
+    div4.className = "card bg-dark"
+    const div4_1 = document.createElement("div")
+    div4_1.className = "card-body"
+    btnWrapper(div4_1,slug)
+    createCanvas("canvas2",div4_1,slug)
+
+    
+
+    div4.appendChild(div4_1)
+
+    //card for data list -- totals
+    const div5 = document.createElement("div")
+    div5.className = "card bg-dark"
+    const div5_1 = document.createElement("div")
+    div5_1.className = "card-body"
+    div5.appendChild(div5_1)
     const ul = document.createElement("ul")
     ul.className = "list-group list-group-flush"
-
     createList(countryObj,ul)
+
+
+    div3.appendChild(div4)
+    div3.appendChild(div5)
+    div2.appendChild(div3)
     div2.appendChild(button)
-    div2.appendChild(ul)
+    div5_1.appendChild(ul)
     div.appendChild(div2)
     
 }
@@ -153,9 +225,8 @@ fetch("https://api.covid19api.com/summary")
     .then((resp) => resp.json())
     .then(data => {
         allFunctions(table,data,total)
+        return data
     })
     .catch(err => console.log(err))
-
-
 
 body.appendChild(table)
