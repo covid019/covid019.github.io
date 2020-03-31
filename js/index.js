@@ -1,8 +1,11 @@
 const body = document.getElementById("main")
 const table = document.createElement("table")
+
 const date = document.createElement("p")
+date.className = "text-center"
 date.innerHTML = new Date().toDateString()
 body.appendChild(date)
+
 function generateTableHead(table, data) {
     let thead = table.createTHead();
     table.className = "table"
@@ -38,6 +41,42 @@ function generateTable(table, data) {
         }
     }
 }
+function calcSum(data){
+    let sumObj = []
+    let sumDeath = 0
+    let sumConfirmed = 0
+    let sumRecovered = 0
+    for(let i = 0; i<data.length ; i++){
+        sumDeath += data[i]["TotalDeaths"];
+        sumConfirmed += data[i]["TotalConfirmed"];
+        sumRecovered += data[i]["TotalRecovered"];
+    }
+    sumObj.push({"Total Deaths":sumDeath})
+    sumObj.push({"Total Comfirmed":sumConfirmed})
+    sumObj.push({"Total Recovered":sumRecovered})
+    return sumObj
+
+}
+function createTotal(data){
+    let totalsArr = calcSum(data)
+    const total = document.getElementById("total")
+    for(let i = 0; i < 3; i++){
+        li = document.createElement("li")
+        li.className = "list-group-item"
+        li.className += " bg-dark"
+        h4 = document.createElement("h4")
+        h3 = document.createElement("h3")
+        h4.className = "text-center"
+        h3.className = "font-weigth-bold"
+        h3.className += " text-center"
+        for(key in totalsArr[i])
+            h4.innerHTML = key 
+            h3.innerHTML = totalsArr[i][key]
+        li.appendChild(h4)
+        li.appendChild(h3)
+        total.appendChild(li)
+    }
+}
 
 function sortData(table,data){
     let arr = Object.values(data.Countries)
@@ -45,7 +84,9 @@ function sortData(table,data){
             .sort((a,b)  => {return a.TotalConfirmed - b.TotalConfirmed})
             .reverse()
     generateTable(table,arr2)
+    createTotal(arr2)
 }
+
 fetch("https://api.covid19api.com/summary")
     .then((resp) => resp.json())
     .then(data => {
@@ -56,5 +97,3 @@ fetch("https://api.covid19api.com/summary")
 
 
 body.appendChild(table)
-
-console.log("node server is not running")
