@@ -86,7 +86,7 @@ function alertBox(data){
         div.removeChild(document.getElementById("alertBoxData"))
     }
     const div2 = document.createElement("div")
-    div2.className = "alert alert-warning alert-dismissible fade show"
+    div2.className = "alert alert-warning alert-dismissible fade show bg-dark"
     div2.setAttribute("role","alert")
     div2.id = "alertBoxData"
 

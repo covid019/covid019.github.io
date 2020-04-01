@@ -69,7 +69,7 @@ function renderChart(resp,cnvid){
             }]
         },
         options: {
-            responsive: true,
+            responsive: false,
             title: {
                 display: true,
                 text: 'Cases'
@@ -104,9 +104,10 @@ function renderChart(resp,cnvid){
     function plotChart(cnvid) {
         let canvas = document.getElementById(cnvid)
         let ctx = canvas.getContext('2d')
-        canvas.height = 250
+        canvas.height = 300
+        canvas.width = 250
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        canvas.height = 250
+        // canvas.height = 250
         window.myLine = new Chart(ctx, config)
     }
     plotChart(cnvid)
