@@ -103,9 +103,11 @@ function renderChart(resp,cnvid){
     }
     function plotChart(cnvid) {
         let canvas = document.getElementById(cnvid)
-        let ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        window.myLine = new Chart(ctx, config);
+        let ctx = canvas.getContext('2d')
+        canvas.height = 250
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        canvas.height = 250
+        window.myLine = new Chart(ctx, config)
     }
     plotChart(cnvid)
 }

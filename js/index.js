@@ -66,7 +66,7 @@ function createCanvas(id,canParent,slug){
 
 function btnWrapper(wrapParrent,slug){
     const wrapdiv = document.createElement("div")
-    wrapdiv.className = "d-flex text-white justify-content-center"
+    wrapdiv.className = "d-flex text-white  flex-wrap justify-content-center"
     createButton("btn btn-dark","button","confirmed",wrapdiv,slug)
     createButton("btn btn-dark","button","deaths",wrapdiv,slug)
     createButton("btn btn-dark","button","recovered",wrapdiv,slug)
@@ -82,10 +82,13 @@ function alertBox(data){
     let slug = data.Slug
 
     const div = document.getElementById("alertBox")
-
+    if(document.getElementById("alertBoxData") != null){
+        div.removeChild(document.getElementById("alertBoxData"))
+    }
     const div2 = document.createElement("div")
     div2.className = "alert alert-warning alert-dismissible fade show"
     div2.setAttribute("role","alert")
+    div2.id = "alertBoxData"
 
 
     //close button
@@ -136,9 +139,8 @@ function alertBox(data){
 }
 function generateTableHead(table, data) {
     let thead = table.createTHead();
-    table.className = "table"
-    table.className += " table-striped"
-    thead.className = "thead-dark"
+    table.className = "table  table-striped"
+    thead.className = "thead-dark sticky-top"
     let row = thead.insertRow();
     for (let key in data) {
         if(key == 1){
