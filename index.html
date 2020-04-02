@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162534847-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-162534847-1');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -51,7 +60,7 @@
                                     <button type="button" id="WDeaths" class="btn btn-dark">Deaths</button>
                                     <button type="button" id="WRecovered" class="btn btn-dark">Recovered</button>
                                 </div>                                     
-                                <div style="width:100%;">
+                                <div style="width:100%;" class="d-flex justify-content-center">
                                         <canvas id="canvas1"></canvas>
                                 </div>
                         </div>
@@ -69,7 +78,6 @@
         </div>
         <div id="footer"></div>
     </div>
-
 <!-- <script src="js/header.js"></script> -->
 <script src="js/body.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

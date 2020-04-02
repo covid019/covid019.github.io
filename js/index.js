@@ -49,6 +49,7 @@ function createButton(clsName,btntype,btnid,btnparrent,slug){
 function createCanvas(id,canParent,slug){
     const candiv = document.createElement("div")
     candiv.style.width = "100%"
+    candiv.className = "d-flex justify-content-center"
     const canvas = document.createElement("canvas")
     canvas.id = id
     canvas.addEventListener("DOMNodeInserted",(e) => {
