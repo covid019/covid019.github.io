@@ -1,21 +1,53 @@
-//var mapboxAccessToken = {"pk.eyJ1IjoiY292aWQiLCJhIjoiY2s4aTBudWU4MDE1dzNub2NobnlkOWQwMyJ9.etd5wk2VX0dHCxx61GllAw"};
-//var map = L.map('map').setView([37.8, -96], 4);
+// initialize the map on the "map" div with a given center and zoom
+// var map = new L.Map('map', {
+//     center: new L.LatLng(51.46, -0.205),
+//     zoom: 1
+//   });
 
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
-//     id: 'mapbox/light-v9',
-//     attribution: ...,
-//     tileSize: 512,
-//     zoomOffset: -1
-// }).addTo(map);
 
-// L.geoJson(statesData).addTo(map);
+// let key = "7cd92f92efbc403c81598c84cde4512f"
+//   // create a new tile layer
+// var tileUrl = 'https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=' + key,
+// layer = new L.TileLayer(tileUrl, {maxZoom: 18});
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiY292aWQiLCJhIjoiY2s4aTBudWU4MDE1dzNub2NobnlkOWQwMyJ9.etd5wk2VX0dHCxx61GllAw'
-}).addTo(mymap);
+function getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(700),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+var myGeoJSONPath = 'assets/geojson/custom.geo.json';
+var myCustomStyle = {
+    stroke: false,
+    fill: true,
+    fillColor: '#b1b1b1',
+    fillOpacity: 1
+}
+$.getJSON(myGeoJSONPath,function(data){
+    var map = L.map('map').setView([39.74739, 7], 1);
+
+    L.geoJson(data, {
+        clickable: false,
+        style: style
+    }).addTo(map);
+    console.log()
+})
+// console.log("mapping...")
+// // add the layer to the map
+// map.addLayer(layer);
