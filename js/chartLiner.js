@@ -2,23 +2,23 @@ let url1 = "https://api.covid19api.com/dayone/country/india/status/confirmed"
 let url2 = "https://api.covid19api.com/dayone/country/india/status/recovered"
 let url3 = "https://api.covid19api.com/dayone/country/india/status/deaths"
 
-document.getElementById("WConfirmed")
-    .addEventListener("click",(e) => {
-        e.preventDefault();
-        getval(url1).then(values => {renderChart(values,"canvas1")})
-    })
+// document.getElementById("WConfirmed")
+//     .addEventListener("click",(e) => {
+//         e.preventDefault();
+//         getval(url1).then(values => {renderChart(values,"canvas1")})
+//     })
 
-document.getElementById("WDeaths")
-    .addEventListener("click",(e) => {
-        e.preventDefault()
-        getval(url3).then(values => {renderChart(values,"canvas1")})
-    })
+// document.getElementById("WDeaths")
+//     .addEventListener("click",(e) => {
+//         e.preventDefault()
+//         getval(url3).then(values => {renderChart(values,"canvas1")})
+//     })
 
-document.getElementById("WRecovered")
-    .addEventListener("click",(e) => {
-        e.preventDefault()
-        getval(url2).then(values => {renderChart(values,"canvas1")})
-    })
+// document.getElementById("WRecovered")
+//     .addEventListener("click",(e) => {
+//         e.preventDefault()
+//         getval(url2).then(values => {renderChart(values,"canvas1")})
+//     })
 
 function extractData(data){
     let extractedData = []
@@ -112,4 +112,4 @@ function renderChart(resp,cnvid){
     }
     plotChart(cnvid)
 }
-getval(url1).then(values => {renderChart(values,"canvas1")})
+//getval(url1).then(values => {renderChart(values,"canvas1")})
