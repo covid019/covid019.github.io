@@ -5,3 +5,4 @@ total from another api
 lodding snipper
 patreon
 may be have to change the api
+add content to footer
