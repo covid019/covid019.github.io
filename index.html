@@ -13,34 +13,39 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Covid 19 pandemic stats,statistics,maps,charts,news and data visualisation. Updated information on Cases,Deaths,Recovered with countries. Corona virus world pandemic.">
 
     <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-    <title>Covid19</title>
+    <title>Covid19 statistics charts and maps </title>
 </head>
 <body>
     <div class="bg-dark text-white">
+        <div id="fb-root"></div>
+          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
         <div id="menu">
             <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-                <img src="assets/images/logo.png" height="60px" width="60px">
+                <img src="assets/images/logo.png" height="60px" width="60px" alt="Logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                       <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Links </a>
+                      <a class="nav-link" href="#">News & Updates </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Disabled</a>
+                      <a class="nav-link" href="#">Do's & Don'ts</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">About Us</a>
                     </li>
                   </ul>
                   <form class="form-inline my-2 my-lg-0">
@@ -48,8 +53,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                   </form>
                 </div>
-              </nav>
-              
+            </nav>    
         </div>
         <div id="header">
             <div id="alertBox"></div>
@@ -77,11 +81,19 @@
                     </div>
                 </div>        
             </div>
+            <div class="fb-share-button" data-href="https://covid019.github.io/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovid019.github.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
         </div>
         <div id="main" class="container">
         </div>
-        <div id="footer"></div>
+        <div id="footer">
+        </div>
     </div>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e88a960e51e9aee"></script>
+
+
+
+
 <!-- <script src="js/header.js"></script> -->
 <script src="js/body.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

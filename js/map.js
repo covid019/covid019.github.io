@@ -17,14 +17,11 @@ promiseArr.push(fetch("assets/geojson/custom.geo.json")
 )
 
 function getColor(d) {
-    return d > 10000 ? '#800026' :
-           d > 5000  ? '#BD0026' :
-           d > 2000  ? '#E31A1C' :
-           d > 1000  ? '#FC4E2A' :
-           d > 500   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
-                      '#FFEDA0';
+    return d > 80000  ? '#000000' :
+           d > 10000  ? '#440101' :
+           d > 1000   ? '#c90202' :
+           d > 200    ? '#fc3a3a' :
+                        '#ffeda0' ;
 }
 
 function style(features) {
@@ -43,6 +40,7 @@ Promise.all(promiseArr).then((data)=>{
         for(keys of data[1].features){
             if(countries.Country == keys.properties.name){
                 keys.properties.confirmed = countries.TotalConfirmed
+                console.log(keys.properties.confirmed,keys.properties.name)
             }
         }
     }
@@ -52,4 +50,7 @@ Promise.all(promiseArr).then((data)=>{
         clickable: false,
         style: style
     }).addTo(map);
+    for(keys of data[1].features){
+        console.log(keys.properties.name)
+    }
 })

@@ -144,7 +144,7 @@ function generateTableHead(table, data) {
     thead.className = "thead-dark sticky-top"
     let row = thead.insertRow();
     for (let key in data) {
-        if(key == 1){
+        if(key == 1 || key == 2 || key == 4 || key == 6){
             continue;
         }
         let th = document.createElement("th");
@@ -161,9 +161,9 @@ function generateTable(table, data) {
     tbody.className = "table-dark"
     table.appendChild(tbody)
     for (let element of data) {
-    let row = tbody.insertRow();
+        let row = tbody.insertRow();
         for (key in element) {
-            if(key == "Slug" || element["TotalConfirmed"] == 0){
+            if(key == "Slug" || key == "NewConfirmed" || key == "NewDeaths" || key == "NewRecovered" || element["TotalConfirmed"] == 0){
                 continue;
             }
             let cell = row.insertCell();
@@ -173,11 +173,31 @@ function generateTable(table, data) {
                 a.innerHTML = element[key]
                 a.addEventListener("click",(e) => {e.preventDefault; return alertBox(element)})
                 cell.appendChild(a)
-            }else{
-                let text = document.createTextNode(element[key])
-                cell.appendChild(text)
+            }else if(key == "TotalConfirmed"){
+                let p = document.createElement("p")
+                let p2 = document.createElement("span")
+                p2.className = "font-weight-lighter font-italic text-warning"
+                p.innerHTML = element[key]
+                p2.innerHTML = " new " + element["NewConfirmed"]
+                p.appendChild(p2)
+                cell.appendChild(p)
+            }else if(key == "TotalDeaths"){
+                let p = document.createElement("p")
+                let p2 = document.createElement("span")
+                p2.className = "font-weight-lighter font-italic text-danger"
+                p.innerHTML = element[key]
+                p2.innerHTML = " new " + element["NewDeaths"]
+                p.appendChild(p2)
+                cell.appendChild(p)
+            }else if(key == "TotalRecovered"){
+                let p = document.createElement("p")
+                let p2 = document.createElement("span")
+                p2.className = "font-weight-lighter font-italic text-success"
+                p.innerHTML = element[key]
+                p2.innerHTML = " new " + element["NewRecovered"]
+                p.appendChild(p2)
+                cell.appendChild(p)
             }
-           
         }
     }
 }
