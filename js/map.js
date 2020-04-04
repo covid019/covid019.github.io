@@ -40,7 +40,6 @@ Promise.all(promiseArr).then((data)=>{
         for(keys of data[1].features){
             if(countries.Country == keys.properties.name){
                 keys.properties.confirmed = countries.TotalConfirmed
-                console.log(keys.properties.confirmed,keys.properties.name)
             }
         }
     }
@@ -49,8 +48,5 @@ Promise.all(promiseArr).then((data)=>{
     L.geoJson(data, {
         clickable: false,
         style: style
-    }).addTo(map);
-    for(keys of data[1].features){
-        console.log(keys.properties.name)
-    }
+    }).addTo(map)
 })
